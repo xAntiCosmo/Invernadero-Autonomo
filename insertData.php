@@ -9,7 +9,8 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 $json = file_get_contents('php://input');
 $data = json_decode($json);
-$temperatura = $data->temperatura;
+$id = $data->id;
+$numero = $data->numero;
 
 $sq = $conexion -> prepare("INSERT INTO RandNums(id,numero) VALUES ('$id','$numero')");
 $sq -> execute();
