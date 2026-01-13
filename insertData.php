@@ -9,10 +9,10 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 $json = file_get_contents('php://input');
 $data = json_decode($json);
-$id = $data->id;
+$id_registro = $data->id_registro;
 $numero = $data->numero;
 
-$sq = $conexion -> prepare("INSERT INTO RandNums(id,numero) VALUES ('$id','$numero')");
+$sq = $conexion -> prepare("INSERT INTO RandNums(ID,Numero_Random) VALUES ('$id_registro','$numero')");
 $sq -> execute();
 
 echo json_encode("ok");
