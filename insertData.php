@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS["conexion"] = new PDO('mysql:host=bora.teramont.net:3306; dbname=Pruebas2', 'u1967_8eIJQgJtzE', '^UCbjpk66l6WuvLcAfw@r5!+');
+$GLOBALS["conexion"] = new PDO('mysql:host=bora.teramont.net:3306; dbname=s1967_Pruebas', 'u1967_8eIJQgJtzE', '^UCbjpk66l6WuvLcAfw@r5!+');
 $GLOBALS["conexion"] -> exec("set names utf8");
 
 header('Access-Control-Allow-Origin: *');
