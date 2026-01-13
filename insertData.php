@@ -9,10 +9,9 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 
 $json = file_get_contents('php://input');
 $data = json_decode($json);
-$TEMPERATURA = $data->TEMPERATURA;
-$ENCENDIDO = $data->ENCENDIDO;
+$temperatura = $data->temperatura;
 
-$sq = $conexion -> prepare("INSERT INTO Registro(TEMPERATURA, ENCENDIDO) VALUES ('$TEMPERATURA', '$ENCENDIDO')");
+$sq = $conexion -> prepare("INSERT INTO Registro(temperatura) VALUES ('$temperatura')");
 $sq -> execute();
 
 echo json_encode("ok");

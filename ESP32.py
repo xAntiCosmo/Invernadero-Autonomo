@@ -7,8 +7,8 @@ import time
 ssid = "INFINITUMB37F_2.4"
 password = "L1M3J9V12D1XD"
 
-#Botón
-boton = Pin(18, Pin.IN, Pin.PULL_UP)
+#Led
+led = Pin(2, Pin.OUT)
 
 #Sensor
 sensor = ADC(Pin(32))
@@ -38,25 +38,17 @@ def enviarDatos():
     url = "https://raw.githubusercontent.com/xAntiCosmo/Invernadero-Autonomo/refs/heads/master/insertData.php"
     
     datos = {
-        "TEMPERATURA": valor,
-        "ENCENDIDO": random
+        "temperatura": temperatura,
         }
     headers = {'Content-Type': 'application/json'}
-    response = urequests.post(url, json=data, headers=headers)
+    response = urequests.post(url, json=datos, headers=headers)
     print(response.content)
 
 while True:
-    if not boton.value():          # Botón presionado
-        time.sleep_ms(30)          # Antirrebote
-        if not boton.value():
+    led.on()                       # Enciende LED
+    temperatura = sensor.read()         # Lee termistor
+    print("Temperatura:", temperatura)
+    enviarDatos()
+    led.off()                      # Apaga LED
 
-            valor = sensor.read()
-            print("Valor ADC:", valor)
-            random = random.randint(0,1)
-            enviarDatos()
-
-            # Esperar a soltar botón
-            while not boton.value():
-                pass
-
-    time.sleep_ms(10)
+    time.sleep(30)                 # Espera 30 segundos
