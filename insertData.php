@@ -11,7 +11,7 @@ $json = file_get_contents('php://input');
 $data = json_decode($json);
 $temperatura = $data->temperatura;
 
-$sq = $conexion -> prepare("INSERT INTO Registro(temperatura) VALUES ('$temperatura')");
+$sq = $conexion -> prepare("INSERT INTO RandNums(id,numero) VALUES ('$id','$numero')");
 $sq -> execute();
 
 echo json_encode("ok");
